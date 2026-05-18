@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.practice.cinelog.data.remote.api.MovieApiService
 import com.practice.cinelog.data.repository.MovieRepository
+import com.practice.cinelog.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,8 +18,11 @@ class MainViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             val movies = repository.getTrending()
-            Log.d("HOME_TEST", "Total: ${movies.size}")
-            movies.forEach { Log.d("HOME_TEST", "Title: $it") }
+            when (val result = repository.getTrending()) {
+                is NetworkResult.Success -> Log.d("HOME_TEST", "Movies: ${result.data.map { it.title }}")
+                is NetworkResult.Error   -> Log.e("HOME_TEST", "Error: ${result.message}")
+                is NetworkResult.Loading -> Unit
+            }
         }
     }
 }
