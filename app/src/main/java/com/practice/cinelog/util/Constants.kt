@@ -2,7 +2,7 @@ package com.practice.cinelog.util
 
 import com.practice.cinelog.BuildConfig
 
-object Constanst {
+object Constants {
     const val IMAGE_SIZE_POSTER = "w500"
     const val IMAGE_SIZE_BACKDROP = "w1280"
     const val IMAGE_SIZE_PROFILE = "w185"

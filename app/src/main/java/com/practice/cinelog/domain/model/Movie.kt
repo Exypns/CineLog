@@ -5,7 +5,14 @@ data class Movie(
     val title: String,
     val overview: String,
     val posterUrl: String,
+    val backdropUrl: String,
+    val voteAverage: Double,
+    val voteCount: Int,
     val releaseDate: String,
-    val rating: Double,
-    val ratingCount: Int
-)
+    val releaseYear: String,
+    val genreIds: List<Int>,
+    val popularity: Double
+) {
+    val formattedString: String get() = String.format("%.1f", voteAverage)
+    val starRating: Float get() = (voteAverage / 2).toFloat()
+}
