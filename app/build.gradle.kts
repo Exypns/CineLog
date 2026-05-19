@@ -27,7 +27,7 @@ android {
         buildConfigField("String", "TMDB_API_KEY", "\"${localProp["TMDB_API_KEY"]}\"")
         buildConfigField("String", "TMDB_ACCESS_TOKEN", "\"${localProp["TMDB_ACCESS_TOKEN"]}\"")
         buildConfigField("String", "TMDB_BASE_URL", "\"https://api.themoviedb.org/3/\"")
-        buildConfigField("String", "TMDB_IMAGE_BASE_URL", "\"https://image.tmdb.org/t/p\"")
+        buildConfigField("String", "TMDB_IMAGE_BASE_URL", "\"https://image.tmdb.org/t/p/\"")
 
     }
 
@@ -99,6 +99,8 @@ dependencies {
 
     // Shimmer
     implementation(libs.shimmer)
+
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

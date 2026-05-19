@@ -1,5 +1,6 @@
 package com.practice.cinelog.ui.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.practice.cinelog.data.repository.MovieRepository
@@ -30,10 +31,19 @@ class HomeViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
-    init { }
+    init {
+        loadMovies()
+    }
 
     fun loadMovies() {
         viewModelScope.launch {
+            val movies = repository.getTrending()
+            when (val result = repository.getTrending()) {
+                is NetworkResult.Success -> Log.d("HOME_TEST", "Movies: ${result.data.map { it.posterUrl }}")
+                is NetworkResult.Error   -> Log.e("HOME_TEST", "Error: ${result.message}")
+                is NetworkResult.Loading -> Unit
+            }
+
             _uiState.value = _uiState.value.copy(isLoading = true, errorMessage = null)
 
             val trending = repository.getTrending()
@@ -48,24 +58,13 @@ class HomeViewModel @Inject constructor(
                 nowPlaying = nowPlaying.dataOrEmpty(),
                 upcoming = upcoming.dataOrEmpty(),
                 topRated = topRated.dataOrEmpty(),
-                isLoading = true,
+                isLoading = false,
                 errorMessage = trending.errorOrNull()
             )
         }
     }
 
     fun refresh() = loadMovies()
-//  TEST
-//    init {
-//        viewModelScope.launch {
-//            val movies = repository.getTrending()
-//            when (val result = repository.getTrending()) {
-//                is NetworkResult.Success -> Log.d("HOME_TEST", "Movies: ${result.data.map { it.title }}")
-//                is NetworkResult.Error   -> Log.e("HOME_TEST", "Error: ${result.message}")
-//                is NetworkResult.Loading -> Unit
-//            }
-//        }
-//    }
 }
 
 private fun NetworkResult<List<Movie>>.dataOrEmpty() =
