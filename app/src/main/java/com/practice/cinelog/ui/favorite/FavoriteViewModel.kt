@@ -17,7 +17,7 @@ data class FavoritesUiState(
 )
 
 @HiltViewModel
-class FavoritesViewModel @Inject constructor(
+class FavoriteViewModel @Inject constructor(
     private val repository: WatchlistRepository
 ) : ViewModel() {
 

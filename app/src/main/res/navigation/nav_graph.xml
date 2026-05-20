@@ -14,4 +14,14 @@
         android:name="com.practice.cinelog.ui.search.SearchFragment"
         android:label="Search" />
 
+    <fragment
+        android:id="@+id/watchlistFragment"
+        android:name="com.practice.cinelog.ui.watchlist.WatchlistFragment"
+        android:label="Watchlist" />
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.practice.cinelog.ui.favorite.FavoritesFragment"
+        android:label="Favorites" />
+
 </navigation>
