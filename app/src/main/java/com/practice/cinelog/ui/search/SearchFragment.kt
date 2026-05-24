@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.practice.cinelog.R
 import com.practice.cinelog.databinding.FragmentSearchBinding
@@ -26,6 +27,9 @@ class SearchFragment : Fragment() {
 
     private val adapter = MovieRowAdapter { movie ->
         // navigate to detail
+        findNavController().navigate(
+            SearchFragmentDirections.actionSearchToDetail(movie.id)
+        )
     }
 
     override fun onCreateView(
