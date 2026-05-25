@@ -32,10 +32,11 @@ class MovieAdapter(
         fun bind(movie: Movie) {
             binding.tvTitle.text = movie.title
             binding.tvRating.text = "⭐ ${movie.formattedString}"
+            binding.tvRatingBadge.text = movie.formattedString
 
             Glide.with(binding.root)
                 .load(movie.posterUrl)
-                .placeholder(R.color.gray)
+                .placeholder(R.color.dark_surface)
                 .centerCrop()
                 .into(binding.ivPoster)
 

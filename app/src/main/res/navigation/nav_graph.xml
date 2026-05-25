@@ -7,21 +7,41 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.practice.cinelog.ui.home.HomeFragment"
-        android:label="Home"/>
+        android:label="Home">
+        <action
+            android:id="@+id/action_home_to_detail"
+            app:destination="@+id/detailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.practice.cinelog.ui.search.SearchFragment"
-        android:label="Search" />
+        android:label="Search">
+        <action
+            android:id="@+id/action_search_to_detail"
+            app:destination="@+id/detailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/watchlistFragment"
         android:name="com.practice.cinelog.ui.watchlist.WatchlistFragment"
-        android:label="Watchlist" />
+        android:label="Watchlist"
+        />
 
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.practice.cinelog.ui.favorite.FavoritesFragment"
-        android:label="Favorites" />
+        android:label="Favorites"
+        />
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.practice.cinelog.ui.detail.DetailFragment"
+        android:label="Detail">
+        <argument
+            android:name="movieId"
+            app:argType="integer"/>
+    </fragment>
+
 
 </navigation>

@@ -1,6 +1,7 @@
 package com.practice.cinelog.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -56,13 +57,38 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
-                    binding.swipeRefresh.isRefreshing = state.isLoading
+                    Log.d("HOME_DEBUG", "isLoading: ${state.isLoading}")
+                    Log.d("HOME_DEBUG", "error: ${state.errorMessage}")
+                    Log.d("HOME_DEBUG", "trending size: ${state.trending.size}")
+                    Log.d("HOME_DEBUG", "popular size: ${state.popular.size}")
+//                    Loading
+                    if (state.isLoading) {
+                        binding.shimmerLayout.visibility = View.VISIBLE
+                        binding.shimmerLayout.startShimmer()
+                        binding.layoutError.visibility = View.GONE
+                    } else {
+                        binding.shimmerLayout.stopShimmer()
+                        binding.shimmerLayout.visibility = View.GONE
+                        binding.swipeRefresh.isRefreshing = false
+                    }
 
-                    trendingAdapter.submitList(state.trending)
-                    popularAdapter.submitList(state.popular)
-                    nowPlayingAdapter.submitList(state.nowPlaying)
-                    upcomingAdapter.submitList(state.upcoming)
-                    topRatedAdapter.submitList(state.topRated)
+//                    Error
+                    if (state.errorMessage != null && state.isLoading) {
+                        binding.layoutError.visibility = View.VISIBLE
+                        binding.tvError.text = state.errorMessage
+                        binding.btnRetry.setOnClickListener { viewModel.refresh() }
+                    } else {
+                        binding.layoutError.visibility = View.GONE
+                    }
+
+//                  Data
+                    if (!state.isLoading && state.errorMessage == null) {
+                        trendingAdapter.submitList(state.trending)
+                        popularAdapter.submitList(state.popular)
+                        nowPlayingAdapter.submitList(state.nowPlaying)
+                        upcomingAdapter.submitList(state.upcoming)
+                        topRatedAdapter.submitList(state.topRated)
+                    }
                 }
             }
         }
@@ -73,8 +99,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToDetail(movieId: Int) {
-        // Uncomment after setting up nav graph
-//         findNavController().navigate(HomeFragmentDirections.actionHomeToDetail(movieId))
+         findNavController().navigate(
+             HomeFragmentDirections.actionHomeToDetail(movieId)
+         )
     }
 
     private fun androidx.recyclerview.widget.RecyclerView.setup(adapter: MovieAdapter) {

@@ -1,16 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.CineLog" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/teal_200</item>
-        <item name="colorPrimaryVariant">@color/teal_200</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+    <style name="Theme.CineLog" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Navy primary -->
+        <item name="colorPrimary">@color/navy_primary</item>
+        <item name="colorPrimaryVariant">@color/navy_dark</item>
+        <item name="colorOnPrimary">@color/silver_light</item>
+
+        <!-- Silver secondary -->
+        <item name="colorSecondary">@color/silver</item>
+        <item name="colorOnSecondary">@color/navy_primary</item>
+
+        <!-- Background -->
+        <item name="android:windowBackground">@color/navy_primary</item>
+        <item name="android:statusBarColor">@color/navy_dark</item>
+        <item name="android:navigationBarColor">@color/navy_dark</item>
+
+        <!-- Surface (cards, bottom nav) -->
+        <item name="colorSurface">@color/navy_surface</item>
+        <item name="colorOnSurface">@color/silver_light</item>
+        <item name="colorOnBackground">@color/silver_light</item>
+
+        <!-- Accent -->
+        <item name="colorTertiary">@color/accent_blue</item>
     </style>
 </resources>

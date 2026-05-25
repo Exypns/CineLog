@@ -8,4 +8,21 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#BDBDBD</color>
+
+    <!-- Navy -->
+    <color name="navy_primary">#0D1B2A</color>
+    <color name="navy_dark">#060D14</color>
+    <color name="navy_surface">#1B2A3B</color>
+    <color name="navy_card">#162233</color>
+
+    <!-- Silver / Gray -->
+    <color name="silver">#C0C8D0</color>
+    <color name="silver_light">#E8ECF0</color>
+    <color name="gray_muted">#8896A4</color>
+
+    <!-- Accent -->
+    <color name="accent_blue">#4A90D9</color>
+
+    <color name="dark_bg">#121212</color>
+    <color name="dark_surface">#1E1E1E</color>
 </resources>
